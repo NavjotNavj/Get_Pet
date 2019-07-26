@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:background="@drawable/background"
+        android:id="@+id/linear"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_marginLeft="10dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:layout_weight="1">
+            <TextView
+                android:text="GermanShephard"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/Dogname" android:textSize="18sp"
+                android:textStyle="bold"/>
+            <TextView
+                android:text="GermanShephard"
+                android:layout_width="match_parent"
+                android:textColor="#0A3D62"
+                android:textSize="16sp"
+                android:layout_height="wrap_content" android:id="@+id/name"/>
+            <TextView
+                android:text="GermanShephard"
+                android:textColor="#0A3D62"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/gender" android:textSize="16sp"
+                />
+            <TextView
+                android:text="GermanShephard"
+                android:textColor="#0A3D62"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/breed" android:textSize="16sp"
+               />
+            <TextView
+                android:text="GermanShephard"
+                android:textColor="#0A3D62"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/district" android:textSize="16sp"
+                />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="100pt"
+            android:layout_height="114dp"
+            android:layout_marginRight="10dp"
+            app:srcCompat="@drawable/german"
+            android:layout_weight="1"
+            android:id="@+id/imageView"/>
+
+    </LinearLayout>
+</LinearLayout>

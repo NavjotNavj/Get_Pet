@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string-array name="species_name">
+        <item>Dog</item>
+        <item>Cat</item>
+    </string-array>
+    <string-array name="sex">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="breeds">
+        <item>GermanShephard</item>
+        <item>Labrador</item>
+        <item>Husky</item>
+        <item>pomarian</item>
+        <item>Corgi</item>
+
+    </string-array>
+    <string-array name="breed">
+        <item>Persian</item>
+        <item>Siamese</item>
+        <item>MaineCoon</item>
+        <item>Himalyan</item>
+
+    </string-array>
+    <string-array name="Color">
+        <item>black</item>
+        <item>brown</item>
+        <item>white</item>
+        <item>mix</item>
+    </string-array>
+    <string-array name="age">
+        <item>Below 3 months</item>
+        <item>Above 6 months</item>
+        <item>Adult</item>
+    </string-array>
+    <string-array name="Radius">
+        <item>3 miles</item>
+        <item>10 miles</item>
+        <item>50 miles</item>
+    </string-array>
+</resources>
