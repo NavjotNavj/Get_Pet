@@ -1,6 +1,6 @@
-package com.example.myapplication;
+package com.example.myapplication.Moldels;
 
-public class Animals {
+public class AnimalsModel {
 
     private String mName;
     private String gender;
@@ -8,21 +8,24 @@ public class Animals {
     private String district;
     private String Photo;
     private String spinner;
-
-    public  Animals(){
+    private String circleText;
+    public AnimalsModel(){
 
     }
 
-    public Animals(String mName, String gender, String breed, String district, String photo, String spinner) {
+    public AnimalsModel(String mName, String gender, String breed, String district, String photo, String spinner,String circleText) {
         this.mName = mName;
         this.gender = gender;
         Breed = breed;
         this.district = district;
         Photo = photo;
         this.spinner = spinner;
+        this.circleText = circleText;
     }
 
-
+    public String getCircleText() {
+        return circleText;
+    }
 
     public String getmName() {
         return mName;

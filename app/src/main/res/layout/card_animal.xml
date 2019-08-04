@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.cardview.widget.CardView
 
-
+    app:cardCornerRadius="8dp"
+    app:cardElevation="10dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginBottom="5dp"
+    android:layout_marginLeft="7dp"
+    android:layout_marginRight="7dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="5dp" android:layout_width="match_parent"
+    android:id="@+id/linear"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:background="@drawable/background"
-        android:id="@+id/linear"
+
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_margin="5dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="0.10"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="65dp"
+                android:layout_height="40dp"
+                android:background="@drawable/circle_shape"
+                android:text="G"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:textSize="28dp"
+                android:id="@+id/circleText"/>
+
+        </LinearLayout>
         <LinearLayout
             android:layout_marginLeft="10dp"
             android:orientation="vertical"
@@ -22,31 +48,38 @@
                 android:text="GermanShephard"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/Dogname" android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Dogname"
+                android:textSize="16sp"
+                android:padding="2dp"
                 android:textStyle="bold"/>
             <TextView
                 android:text="GermanShephard"
                 android:layout_width="match_parent"
                 android:textColor="#0A3D62"
-                android:textSize="16sp"
+                android:textSize="14sp"
+                android:padding="2dp"
                 android:layout_height="wrap_content" android:id="@+id/name"/>
             <TextView
                 android:text="GermanShephard"
                 android:textColor="#0A3D62"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/gender" android:textSize="16sp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" android:id="@+id/gender" android:textSize="14sp"
                 />
             <TextView
                 android:text="GermanShephard"
                 android:textColor="#0A3D62"
+                android:padding="2dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/breed" android:textSize="16sp"
+                android:layout_height="wrap_content" android:id="@+id/breed" android:textSize="14sp"
                />
             <TextView
                 android:text="GermanShephard"
                 android:textColor="#0A3D62"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" android:id="@+id/district" android:textSize="16sp"
+                android:padding="2dp"
+                android:layout_height="wrap_content" android:id="@+id/district" android:textSize="14sp"
                 />
         </LinearLayout>
         <ImageView
@@ -58,4 +91,4 @@
             android:id="@+id/imageView"/>
 
     </LinearLayout>
-</LinearLayout>
+</androidx.cardview.widget.CardView>

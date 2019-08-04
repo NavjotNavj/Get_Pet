@@ -3,22 +3,25 @@
     package="com.example.myapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".Home"
+        android:name=".Moldels.Home"
         android:allowBackup="true"
+        android:allowClearUserData="true"
         android:icon="@mipmap/animaladopt"
         android:label="GetPet"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".profile"></activity>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".HappyCart"></activity>
+        <activity android:name=".Last_Activity" />
+        <activity android:name=".profile" />
         <activity android:name=".Retreiving_data" />
         <activity android:name=".listing_animals" />
-        <activity android:name=".Details" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

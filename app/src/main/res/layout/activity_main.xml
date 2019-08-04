@@ -4,37 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gett"
     android:orientation="vertical"
     tools:context=".MainActivity">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        android:scaleType="fitXY"
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="199dp"
+        app:srcCompat="@drawable/frame1"
+        android:layout_marginBottom="40dp"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="-3dp"
+        android:layout_marginLeft="-3dp"
+        android:layout_marginTop="250dp"
         android:layout_marginBottom="8dp"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="7dp"
-            android:text="Already have an account?"
-            android:textAlignment="center"
-            android:textColor="#2F363F"
-            android:textSize="24sp"
-            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:text="Please SignIn here:"
-            android:textAlignment="center"
+            android:text="Sign In:"
+         android:padding="10dp"
+            android:layout_marginLeft="10dp"
             android:textColor="#2F363F"
-            android:textSize="24sp"
+            android:textSize="19sp"
             android:textStyle="bold" />
 
         <EditText
@@ -46,8 +56,11 @@
             android:layout_marginBottom="20dp"
             android:hint="Enter email here"
             android:textColor="#2F363F"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="17sp"
+            android:lines="1"
+            android:maxLength="25"
+            android:inputType="textEmailAddress"
+            />
 
         <EditText
             android:id="@+id/pass"
@@ -56,11 +69,13 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="20dp"
+            android:lines="1"
+            android:maxLength="10"
             android:ems="10"
             android:hint="Enter password here"
             android:inputType="textPassword"
             android:textColor="#2F363F"
-            android:textSize="20sp" />
+            android:textSize="17sp" />
 
         <Button
             android:id="@+id/welcomebtn"
@@ -73,7 +88,7 @@
             android:text="Welcome to Animal World"
             android:textAlignment="gravity"
             android:textColor="#fff"
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <Button
@@ -82,12 +97,12 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:background="@drawable/button_shape"
             android:onClick="showRegisterDialog"
             android:text="SignUp"
             android:textAlignment="center"
             android:textColor="#fff"
-            android:textSize="20sp"
-            android:background="@drawable/button_shape"
+            android:textSize="15sp"
             android:textStyle="bold" />
 
         <TextView
@@ -100,10 +115,14 @@
             android:text="CreateAccount here"
             android:textAlignment="center"
             android:textColor="#2F363F"
+            android:padding="5dp"
 
-            android:textSize="20sp"
+            android:textSize="17sp"
             android:textStyle="bold" />
 
 
     </LinearLayout>
+
+    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

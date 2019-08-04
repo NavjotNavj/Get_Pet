@@ -1,30 +1,37 @@
-package com.example.myapplication;
+package com.example.myapplication.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
+import com.example.myapplication.Moldels.AnimalsModel;
+import com.example.myapplication.R;
+import com.example.myapplication.profile;
 import com.squareup.picasso.Picasso;
-import java.util.List;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 
-public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleViewHolder> {
+public class exampleAdapter extends RecyclerView.Adapter<exampleAdapter.ExampleViewHolder> {
 
 
 
     private Context context;
-    private List<Animals> mAnimals;
+    private ArrayList<AnimalsModel> mAnimals;
 
-    public example_adapt(Context context, List<Animals> mAnimals) {
+    public exampleAdapter(Context context, ArrayList<AnimalsModel> mAnimals) {
         this.context = context;
         this.mAnimals = mAnimals;
     }
@@ -33,8 +40,9 @@ public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleVie
     public static class ExampleViewHolder extends RecyclerView.ViewHolder{
         //4
         public ImageView imageView;
-        public TextView name, breed,gender,district,Dogname;
-        public LinearLayout linearLayout;
+        public TextView name, breed,gender,district,Dogname,textCircle;
+        public CardView linearLayout;
+
         //2
         public ExampleViewHolder(@NonNull View itemView) {
 
@@ -46,6 +54,8 @@ public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleVie
             breed = itemView.findViewById(R.id.breed);
             district = itemView.findViewById(R.id.district);
             linearLayout= itemView.findViewById(R.id.linear);
+            textCircle = itemView.findViewById(R.id.circleText);
+
 
 
 
@@ -60,7 +70,7 @@ public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleVie
     //3
     @NonNull
     @Override
-    public example_adapt.ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public exampleAdapter.ExampleViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         //5
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.card_animal,viewGroup,false);
         return new ExampleViewHolder(view);
@@ -70,20 +80,20 @@ public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleVie
     @Override
     public void onBindViewHolder(@NonNull ExampleViewHolder exampleViewHolder,final int i) {
 
-        final Animals uploadCurrent = mAnimals.get(i);
+        final AnimalsModel uploadCurrent = mAnimals.get(i);
         //7
+
         Picasso.get()
                 .load(uploadCurrent.getPhoto())
-                .fit()
-                .placeholder(R.mipmap.ic_launcher)
-                .centerCrop()
                 .into(exampleViewHolder.imageView);
-
+        exampleViewHolder.textCircle.setText(uploadCurrent.getCircleText());
         exampleViewHolder.Dogname.setText(uploadCurrent.getSpinner());
         exampleViewHolder.name.setText(uploadCurrent.getmName());
         exampleViewHolder.gender.setText(uploadCurrent.getGender());
         exampleViewHolder.breed.setText(uploadCurrent.getBreed());
         exampleViewHolder.district.setText(uploadCurrent.getDistrict());
+
+
 
 
         exampleViewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +105,7 @@ public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleVie
                 intent.putExtra("gender", uploadCurrent.getGender());
                 intent.putExtra("breed", uploadCurrent.getBreed());
                 intent.putExtra("district", uploadCurrent.getDistrict());
+                intent.putExtra("DogName",uploadCurrent.getSpinner());
                 context.startActivity(intent);
             }
         });
@@ -105,11 +116,15 @@ public class example_adapt extends RecyclerView.Adapter<example_adapt.ExampleVie
 
 
 
-    }
 
+
+
+
+    }
     @Override
     public int getItemCount() {
         return mAnimals.size();
+
     }
 
 

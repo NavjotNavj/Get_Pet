@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Last_Activity"
+    android:orientation="vertical"
+    >
+    <include layout="@layout/toolbar"
+        android:id="@+id/toolbar"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        android:gravity="center_vertical"
+        android:text="THANK YOU FOR ADOPTIING THIS PET..."
+        android:textAlignment="center"
+        android:textColor="#000"
+        android:textSize="25sp"
+        android:textStyle="italic"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please Provide your phone_No we will contact you:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColorHint="#000"
+        android:hint="Phone_no"
+        android:padding="5dp"
+        android:inputType="number"
+        />
+
+
+
+    <Button
+        android:id="@+id/home_btn"
+        android:layout_width="119dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/button_shape"
+        android:onClick="openListing_animals"
+        android:text="Submit"
+        android:textColor="#fff"
+        android:textSize="17sp" />
+</LinearLayout>
