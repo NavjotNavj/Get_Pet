@@ -3,12 +3,14 @@ package com.example.myapplication;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,13 +21,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Adapter.SlidingViewAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class profile extends AppCompatActivity  {
 
     //button
     private Button Adoptbtn;
+
+    private static ViewPager mPager;
+    private static int currentPage = 0;
+    private static int NUM_PAGES = 0;
+    private static final Integer[] IMAGES= {R.drawable.ic_launcher_background,R.drawable.met_ic_clear,R.drawable.ic_launcher_background,R.drawable.met_ic_clear};
+    private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -77,9 +90,50 @@ public class profile extends AppCompatActivity  {
         getSupportActionBar().setHomeButtonEnabled(true);
 
         getIncomingIntent();
+        setPager();
         init();
 
     }
+
+    private void setPager() {
+        for(int i=0;i<IMAGES.length;i++)
+            ImagesArray.add(IMAGES[i]);
+
+        mPager = findViewById(R.id.pager);
+
+
+        mPager.setAdapter(new SlidingViewAdapter(profile.this,ImagesArray));
+
+
+
+
+        final float density = getResources().getDisplayMetrics().density;
+
+//Set circle indicator radius
+        NUM_PAGES =IMAGES.length;
+
+        // Auto start of viewpager
+        final Handler handler = new Handler();
+        final Runnable Update = new Runnable() {
+            public void run() {
+                if (currentPage == NUM_PAGES) {
+                    currentPage = 0;
+                }
+                mPager.setCurrentItem(currentPage++, true);
+            }
+        };
+        Timer swipeTimer = new Timer();
+        swipeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(Update);
+            }
+        }, 3000, 3000);
+
+        // Pager listener over indicator
+
+    }
+
 
     private void init() {
         Adoptbtn=findViewById(R.id.Adoptbtn);

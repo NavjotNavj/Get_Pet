@@ -6,31 +6,48 @@
     android:layout_height="match_parent"
     tools:context=".profile">
 
-    <include layout="@layout/toolbar"
+    <include
         android:id="@+id/toolbar"
-        />
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:id="@+id/pagerLay"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/toolbar"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="5dp">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true" />
+
+    </RelativeLayout>
+
     <!--<TextView-->
-        <!--android:id="@+id/list_text"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_marginStart="0dp"-->
-        <!--android:text="Profile"-->
-        <!--android:textAlignment="center"-->
-        <!--android:textColor="#2C3335"-->
-        <!--android:textSize="30sp"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:background="#fff"-->
-        <!--android:textStyle="bold"-->
-        <!--android:layout_marginLeft="0dp"-->
-        <!--android:layout_alignParentLeft="true" />-->
+    <!--android:id="@+id/list_text"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="0dp"-->
+    <!--android:text="Profile"-->
+    <!--android:textAlignment="center"-->
+    <!--android:textColor="#2C3335"-->
+    <!--android:textSize="30sp"-->
+    <!--android:gravity="center_vertical"-->
+    <!--android:background="#fff"-->
+    <!--android:textStyle="bold"-->
+    <!--android:layout_marginLeft="0dp"-->
+    <!--android:layout_alignParentLeft="true" />-->
 
     <LinearLayout
         android:layout_width="411dp"
         android:layout_height="677dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/pagerLay"
         android:layout_marginStart="-2dp"
         android:layout_marginLeft="-2dp"
         android:layout_marginTop="54dp"
@@ -38,18 +55,18 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:weightSum="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="3">
 
             <TextView
-                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="2"
                 android:text="Name:"
                 android:textColor="#000"
                 android:textSize="19sp"
@@ -57,15 +74,14 @@
 
             <TextView
                 android:id="@+id/nametv"
-                android:layout_weight="1"
-                android:layout_marginLeft="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="1"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="15sp"
-                 />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,11 +91,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="2"
                 android:text="Breed:"
                 android:textColor="#000"
                 android:textSize="19sp"
@@ -87,15 +103,14 @@
 
             <TextView
                 android:id="@+id/gendertv"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="1"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="15sp"
-               />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -105,11 +120,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="2"
                 android:text="Gender:"
                 android:textColor="#000"
                 android:textSize="19sp"
@@ -117,15 +132,14 @@
 
             <TextView
                 android:id="@+id/breedtv"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="1"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="15sp"
-              />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -135,11 +149,11 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_weight="2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="2"
                 android:text="District"
                 android:textColor="#000"
                 android:textSize="19sp"
@@ -147,15 +161,14 @@
 
             <TextView
                 android:id="@+id/districttv"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="7dp"
+                android:layout_weight="1"
                 android:text=""
                 android:textColor="#000"
-                android:textSize="15sp"
-                 />
+                android:textSize="15sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -175,15 +188,16 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-<View
-    android:layout_width="match_parent"
-    android:layout_height="0.7dp"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:background="@color/cardview_dark_background"
-    />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.7dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/cardview_dark_background" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -196,9 +210,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginRight="10dp"
-                android:scaleType="fitCenter"
-                android:layout_weight="1"/>
-                <!--app:srcCompat="@drawable/german" />-->
+                android:layout_weight="1"
+                android:scaleType="fitCenter" />
+            <!--app:srcCompat="@drawable/german" />-->
 
         </LinearLayout>
 
@@ -213,8 +227,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="200dp"
                 android:background="@drawable/button_shape"
-                android:text="Adopt"
                 android:onClick="openHappyCart"
+                android:text="Adopt"
                 android:textColor="#fff"
                 android:textStyle="bold" />
 
@@ -223,29 +237,29 @@
     </LinearLayout>
 
     <!--<ImageView-->
-        <!--android:id="@+id/imageView5"-->
-        <!--android:layout_width="50dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_marginStart="0dp"-->
-        <!--android:layout_marginTop="0dp"-->
-        <!--android:onClick="openListAnimals"-->
-        <!--app:srcCompat="@drawable/baseline_arrow"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_marginLeft="0dp" />-->
+    <!--android:id="@+id/imageView5"-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_marginStart="0dp"-->
+    <!--android:layout_marginTop="0dp"-->
+    <!--android:onClick="openListAnimals"-->
+    <!--app:srcCompat="@drawable/baseline_arrow"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_marginLeft="0dp" />-->
 
     <!--<ImageView-->
-        <!--android:id="@+id/imageView6"-->
-        <!--android:layout_width="50dp"-->
-        <!--android:layout_height="50dp"-->
-        <!--android:onClick="logout"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_marginTop="0dp"-->
-        <!--android:layout_marginEnd="3dp"-->
-        <!--app:srcCompat="@drawable/logout"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginRight="3dp" />-->
+    <!--android:id="@+id/imageView6"-->
+    <!--android:layout_width="50dp"-->
+    <!--android:layout_height="50dp"-->
+    <!--android:onClick="logout"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_marginTop="0dp"-->
+    <!--android:layout_marginEnd="3dp"-->
+    <!--app:srcCompat="@drawable/logout"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_marginRight="3dp" />-->
 
 </RelativeLayout>
