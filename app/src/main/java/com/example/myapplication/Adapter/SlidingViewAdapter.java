@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.R;
 
 import java.util.ArrayList;
@@ -45,6 +46,7 @@ public class SlidingViewAdapter extends PagerAdapter {
         assert imageLayout != null;
         final ImageView imageView = imageLayout
                 .findViewById(R.id.image);
+
 
 
         imageView.setImageResource(IMAGES.get(position));

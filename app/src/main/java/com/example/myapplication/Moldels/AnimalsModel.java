@@ -1,5 +1,9 @@
 package com.example.myapplication.Moldels;
 
+import android.net.Uri;
+
+import java.util.ArrayList;
+
 public class AnimalsModel {
 
     private String mName;
@@ -13,7 +17,7 @@ public class AnimalsModel {
 
     }
 
-    public AnimalsModel(String mName, String gender, String breed, String district, String photo, String spinner,String circleText) {
+    public AnimalsModel(String mName, String gender, String breed, String district, String photo, String spinner, String circleText) {
         this.mName = mName;
         this.gender = gender;
         Breed = breed;
@@ -68,9 +72,7 @@ public class AnimalsModel {
         this.district = district;
     }
 
-    public void setPhoto(String photo) {
-        this.Photo = photo;
-    }
+
 
     public void setSpinner(String spinner) {
         this.spinner = spinner;

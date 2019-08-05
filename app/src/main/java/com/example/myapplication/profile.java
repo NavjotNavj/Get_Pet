@@ -169,7 +169,7 @@ public class profile extends AppCompatActivity  {
         mdistrict.setText(district);
 
 
-        ImageView image = findViewById(R.id.imagetv);
+        ImageView image = findViewById(R.id.pager);
         Glide.with(this)
                 .asBitmap()
                 .load(imageUrl)

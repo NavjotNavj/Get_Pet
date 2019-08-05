@@ -111,15 +111,6 @@ public class exampleAdapter extends RecyclerView.Adapter<exampleAdapter.ExampleV
         });
 
 
-
-
-
-
-
-
-
-
-
     }
     @Override
     public int getItemCount() {

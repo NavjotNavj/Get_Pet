@@ -15,7 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.Moldels.AnimalImages;
 import com.example.myapplication.Moldels.AnimalsModel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,6 +38,8 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+
+import java.util.ArrayList;
 
 public class Retreiving_data extends AppCompatActivity {
     //spinner
@@ -66,6 +68,8 @@ public class Retreiving_data extends AppCompatActivity {
 
     //for selecting we use a code
     private  static final int IMAGE_PICK_CODE= 1;
+
+    ArrayList<AnimalImages> animalImages = new ArrayList<>();
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -230,12 +234,26 @@ public class Retreiving_data extends AppCompatActivity {
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
         startActivityForResult(intent,IMAGE_PICK_CODE);
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE && data!= null &&data.getData() !=null){
-           mImageUri = data.getData();
+        if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE && data!= null &&data.getClipData() !=null){
+            int countClipData  = data.getClipData().getItemCount();
+
+            int currentImageSelect = 0;
+
+            while (currentImageSelect<countClipData){
+                mImageUri = data.getClipData().getItemAt(currentImageSelect).getUri();
+                currentImageSelect = currentImageSelect +1;
+            }
+
+
+
+
+
+
             Glide.with(this)
                     .load(mImageUri)
                     .into(img);

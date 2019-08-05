@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="1dip"
-    android:background="@color/white"
+    android:background="#fff"
     >
 
     <ImageView
-        android:id="@+id/image"
+        android:id="@+id/pagerimage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"

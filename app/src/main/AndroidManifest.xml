@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".HappyCart"></activity>
+        <activity android:name=".SplashActivity"></activity>
+        <activity android:name=".HappyCart" />
         <activity android:name=".Last_Activity" />
         <activity android:name=".profile" />
         <activity android:name=".Retreiving_data" />
