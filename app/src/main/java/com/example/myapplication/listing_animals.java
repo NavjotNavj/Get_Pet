@@ -50,6 +50,7 @@ public class listing_animals extends AppCompatActivity {
 
     //to fetch list in animals model class
     ArrayList<AnimalsModel> mAnimals;
+    ArrayList<String> imageUrls;
 
 
     @Override
@@ -156,6 +157,8 @@ public class listing_animals extends AppCompatActivity {
                 Toast.makeText(listing_animals.this,databaseError.getMessage(),Toast.LENGTH_SHORT).show();
             }
         });
+
+
     }
     public void retrieve(View view){
         Intent intent  = new Intent(this, Retreiving_data.class);

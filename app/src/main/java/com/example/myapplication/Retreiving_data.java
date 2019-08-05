@@ -43,6 +43,7 @@ import java.util.ArrayList;
 
 public class Retreiving_data extends AppCompatActivity {
     //spinner
+    ArrayList<AnimalImages> imageUriList;
     Spinner sp1;
 
     //adapter for spinner
@@ -59,7 +60,7 @@ public class Retreiving_data extends AppCompatActivity {
     TextView t1;
 
     //uri
-    private Uri mImageUri;
+    private ArrayList<Uri> mImageArrayListUri=new ArrayList<>();
 
     //firebase reference
     private StorageReference mStorageReference;
@@ -172,56 +173,58 @@ public class Retreiving_data extends AppCompatActivity {
 
     //for uploading contents to firebase
     private void addContents(){
-        if(mImageUri != null){
-            final StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()
-            + "." + getFileExtension(mImageUri));
+        if(mImageArrayListUri.size()>0){
+            for (int i=0;i<mImageArrayListUri.size();i++){
+                final StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()
+                        + "." + getFileExtension(mImageArrayListUri.get(i)));
+                        final Uri x=mImageArrayListUri.get(i);
+                mUploadTask =  fileReference.putFile(mImageArrayListUri.get(i))
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
-           mUploadTask =  fileReference.putFile(mImageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                    @Override
+                                    public void onSuccess(Uri uri) {
 
-                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                                @Override
-                                public void onSuccess(Uri uri) {
+                                        Toast.makeText(Retreiving_data.this, "Upload Successful", Toast.LENGTH_SHORT).show();
+                                        AnimalsModel animals = new AnimalsModel(mName.getText().toString().trim(),
+                                                mGenger.getText().toString().trim(),
+                                                mBreed.getText().toString().trim(),
+                                                mDidtrict.getText().toString().trim(),
+                                                uri.toString(),
+                                                sp1.getSelectedItem().toString(),
+                                                mBreed.getText().toString().substring(0,1));
+                                        String uploadId = databaseAnimals.push().getKey();
+                                        databaseAnimals.child(uploadId).setValue(animals);
+                                    }
+                                });
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        mProgressBar.setProgress(0);
+                                    }
+                                }, 500);
+                                Toast.makeText(Retreiving_data.this, "Upload Successful", Toast.LENGTH_SHORT).show();
 
-                                    Toast.makeText(Retreiving_data.this, "Upload Successful", Toast.LENGTH_SHORT).show();
-                                    AnimalsModel animals = new AnimalsModel(mName.getText().toString().trim(),
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Retreiving_data.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                mProgressBar.setProgress((int) progress);
+                            }
+                        });
+            }
 
-                                            mGenger.getText().toString().trim(),
-                                            mBreed.getText().toString().trim(),
-                                            mDidtrict.getText().toString().trim(),
-                                            uri.toString(),
-                                            sp1.getSelectedItem().toString(),
-                                            mBreed.getText().toString().substring(0,1));
-                                    String uploadId = databaseAnimals.push().getKey();
-                                    databaseAnimals.child(uploadId).setValue(animals);
-                                }
-                            });
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mProgressBar.setProgress(0);
-                                }
-                            }, 500);
-                            Toast.makeText(Retreiving_data.this, "Upload Successful", Toast.LENGTH_SHORT).show();
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Retreiving_data.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
-                            mProgressBar.setProgress((int) progress);
-                        }
-                    });
         }
         else {
             Toast.makeText(this,"No File Selected",Toast.LENGTH_SHORT).show();
@@ -245,7 +248,7 @@ public class Retreiving_data extends AppCompatActivity {
             int currentImageSelect = 0;
 
             while (currentImageSelect<countClipData){
-                mImageUri = data.getClipData().getItemAt(currentImageSelect).getUri();
+                mImageArrayListUri.set(currentImageSelect,data.getClipData().getItemAt(currentImageSelect).getUri());
                 currentImageSelect = currentImageSelect +1;
             }
 
@@ -254,9 +257,9 @@ public class Retreiving_data extends AppCompatActivity {
 
 
 
-            Glide.with(this)
-                    .load(mImageUri)
-                    .into(img);
+//            Glide.with(this)
+//                    .load(mImageUri)
+//                    .into(img);
         }
     }
 

@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.myapplication.Adapter.SlidingViewAdapter;
+import com.example.myapplication.Moldels.AnimalsModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
@@ -38,7 +39,7 @@ public class profile extends AppCompatActivity  {
     private static int currentPage = 0;
     private static int NUM_PAGES = 0;
     private static final Integer[] IMAGES= {R.drawable.ic_launcher_background,R.drawable.met_ic_clear,R.drawable.ic_launcher_background,R.drawable.met_ic_clear};
-    private ArrayList<Integer> ImagesArray = new ArrayList<Integer>();
+    private ArrayList<String> ImagesArray = new ArrayList<>();  //TODO:
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -96,8 +97,48 @@ public class profile extends AppCompatActivity  {
     }
 
     private void setPager() {
-        for(int i=0;i<IMAGES.length;i++)
-            ImagesArray.add(IMAGES[i]);
+
+
+        // Pager listener over indicator
+
+    }
+
+
+    private void init() {
+        Adoptbtn=findViewById(R.id.Adoptbtn);
+    }
+
+    //getting data from each card
+    private void getIncomingIntent(){
+        if(getIntent().hasExtra("image_url") &&getIntent().hasExtra("name")&&getIntent().hasExtra("gender")&&getIntent().hasExtra("breed")&&getIntent().hasExtra("district") ){
+
+            ArrayList<String> image =(ArrayList<String>) getIntent().getSerializableExtra("image_url");
+            String mName = getIntent().getStringExtra("name");
+            String gender = getIntent().getStringExtra("gender");
+            String breed = getIntent().getStringExtra("breed");
+            String district = getIntent().getStringExtra("district");
+
+            setContents(image, mName, gender , breed, district );
+        }
+    }
+
+    //setting that data
+    private void  setContents(ArrayList<String> imageUrl , String mName , String breed , String gender, String district){
+
+        TextView name  = findViewById(R.id.nametv);
+        name.setText(mName);
+
+        TextView mgender  = findViewById(R.id.gendertv);
+        mgender.setText(gender);
+
+        TextView Breed = findViewById(R.id.breedtv);
+        Breed.setText(breed);
+
+        TextView mdistrict = findViewById(R.id.districttv);
+        mdistrict.setText(district);
+
+        for(int i=0;i<imageUrl.size();i++)
+            ImagesArray.add(imageUrl.get(i));
 
         mPager = findViewById(R.id.pager);
 
@@ -129,51 +170,11 @@ public class profile extends AppCompatActivity  {
                 handler.post(Update);
             }
         }, 3000, 3000);
-
-        // Pager listener over indicator
-
-    }
-
-
-    private void init() {
-        Adoptbtn=findViewById(R.id.Adoptbtn);
-    }
-
-    //getting data from each card
-    private void getIncomingIntent(){
-        if(getIntent().hasExtra("image_url") &&getIntent().hasExtra("name")&&getIntent().hasExtra("gender")&&getIntent().hasExtra("breed")&&getIntent().hasExtra("district") ){
-            String image = getIntent().getStringExtra("image_url");
-            String mName = getIntent().getStringExtra("name");
-            String gender = getIntent().getStringExtra("gender");
-            String breed = getIntent().getStringExtra("breed");
-            String district = getIntent().getStringExtra("district");
-
-            setContents(image, mName, gender , breed, district );
-        }
-    }
-
-    //setting that data
-    private void  setContents(String imageUrl , String mName , String breed , String gender, String district){
-
-
-        TextView name  = findViewById(R.id.nametv);
-        name.setText(mName);
-
-        TextView mgender  = findViewById(R.id.gendertv);
-        mgender.setText(gender);
-
-        TextView Breed = findViewById(R.id.breedtv);
-        Breed.setText(breed);
-
-        TextView mdistrict = findViewById(R.id.districttv);
-        mdistrict.setText(district);
-
-
-        ImageView image = findViewById(R.id.pager);
-        Glide.with(this)
-                .asBitmap()
-                .load(imageUrl)
-                .into(image);
+//        ImageView image = findViewById(R.id.pager);
+//        Glide.with(this)
+//                .asBitmap()
+//                .load(imageUrl)
+//                .into(image);
 
     }
     //on click events are done

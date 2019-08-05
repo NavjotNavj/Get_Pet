@@ -18,12 +18,12 @@ import java.util.ArrayList;
 public class SlidingViewAdapter extends PagerAdapter {
 
 
-    private ArrayList<Integer> IMAGES;
+    private ArrayList<String> IMAGES;
     private LayoutInflater inflater;
     private Context context;
 
 
-    public SlidingViewAdapter(Context context, ArrayList<Integer> IMAGES) {
+    public SlidingViewAdapter(Context context, ArrayList<String> IMAGES) {
         this.context = context;
         this.IMAGES = IMAGES;
         inflater = LayoutInflater.from(context);
@@ -48,8 +48,11 @@ public class SlidingViewAdapter extends PagerAdapter {
                 .findViewById(R.id.image);
 
 
-
-        imageView.setImageResource(IMAGES.get(position));
+        Glide.with(context)
+                .asBitmap()
+                .load(IMAGES.get(position))
+                .into(imageView);
+//        imageView.setImageResource();
 
         view.addView(imageLayout, 0);
 

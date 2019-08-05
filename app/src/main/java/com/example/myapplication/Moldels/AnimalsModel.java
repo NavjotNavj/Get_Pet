@@ -2,6 +2,7 @@ package com.example.myapplication.Moldels;
 
 import android.net.Uri;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class AnimalsModel {
@@ -10,14 +11,14 @@ public class AnimalsModel {
     private String gender;
     private String Breed;
     private String district;
-    private String Photo;
+    private ArrayList<AnimalImages> Photo;
     private String spinner;
     private String circleText;
-    public AnimalsModel(){
+
+    public AnimalsModel(String trim, String gender, String breed, String district, String s, String spinner, String substring){
 
     }
-
-    public AnimalsModel(String mName, String gender, String breed, String district, String photo, String spinner, String circleText) {
+    public AnimalsModel(String mName, String gender, String breed, String district, ArrayList<AnimalImages> photo, String spinner, String circleText) {
         this.mName = mName;
         this.gender = gender;
         Breed = breed;
@@ -39,7 +40,7 @@ public class AnimalsModel {
         return Breed;
     }
 
-    public String getPhoto() {
+    public ArrayList<AnimalImages> getPhoto() {
         return Photo;
     }
 
@@ -76,5 +77,6 @@ public class AnimalsModel {
 
     public void setSpinner(String spinner) {
         this.spinner = spinner;
-    }
-}
+    }}
+
+

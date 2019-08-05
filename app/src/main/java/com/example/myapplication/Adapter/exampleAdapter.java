@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,7 +86,7 @@ public class exampleAdapter extends RecyclerView.Adapter<exampleAdapter.ExampleV
         //7
 
         Picasso.get()
-                .load(uploadCurrent.getPhoto())
+                .load(uploadCurrent.getPhoto().get(i).getImageList().get(0))
                 .into(exampleViewHolder.imageView);
         exampleViewHolder.textCircle.setText(uploadCurrent.getCircleText());
         exampleViewHolder.Dogname.setText(uploadCurrent.getSpinner());
@@ -100,7 +102,10 @@ public class exampleAdapter extends RecyclerView.Adapter<exampleAdapter.ExampleV
             @Override
             public void onClick(View view) {
                 Intent intent  = new Intent (context, profile.class);
-                intent.putExtra("image_url", uploadCurrent.getPhoto());
+                ArrayList<Uri> imageUrls;
+                imageUrls  = uploadCurrent.getPhoto().get(i).getImageList();
+
+                intent.putExtra("image_url", uploadCurrent.getPhoto().get(i).getImageList());
                 intent.putExtra("name", uploadCurrent.getmName());
                 intent.putExtra("gender", uploadCurrent.getGender());
                 intent.putExtra("breed", uploadCurrent.getBreed());
