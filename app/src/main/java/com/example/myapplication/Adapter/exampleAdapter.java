@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.myapplication.Moldels.AnimalsModel;
 import com.example.myapplication.R;
 import com.example.myapplication.profile;
@@ -83,9 +84,10 @@ public class exampleAdapter extends RecyclerView.Adapter<exampleAdapter.ExampleV
         final AnimalsModel uploadCurrent = mAnimals.get(i);
         //7
 
-        Picasso.get()
-                .load(uploadCurrent.getPhoto())
+        Glide.with(context)
+                .load(uploadCurrent.getPhoto1())
                 .into(exampleViewHolder.imageView);
+
         exampleViewHolder.textCircle.setText(uploadCurrent.getCircleText());
         exampleViewHolder.Dogname.setText(uploadCurrent.getSpinner());
         exampleViewHolder.name.setText(uploadCurrent.getmName());
@@ -100,7 +102,7 @@ public class exampleAdapter extends RecyclerView.Adapter<exampleAdapter.ExampleV
             @Override
             public void onClick(View view) {
                 Intent intent  = new Intent (context, profile.class);
-                intent.putExtra("image_url", uploadCurrent.getPhoto());
+                intent.putExtra("image_url", uploadCurrent.getPhoto1());
                 intent.putExtra("name", uploadCurrent.getmName());
                 intent.putExtra("gender", uploadCurrent.getGender());
                 intent.putExtra("breed", uploadCurrent.getBreed());

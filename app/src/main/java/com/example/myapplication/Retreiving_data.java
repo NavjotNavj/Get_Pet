@@ -40,6 +40,9 @@ import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 
 public class Retreiving_data extends AppCompatActivity {
     //spinner
@@ -59,7 +62,7 @@ public class Retreiving_data extends AppCompatActivity {
     TextView t1;
 
     //uri
-    private Uri mImageUri;
+    private  Uri mImageUri;
 
     //firebase reference
     private StorageReference mStorageReference;
@@ -69,7 +72,11 @@ public class Retreiving_data extends AppCompatActivity {
     //for selecting we use a code
     private  static final int IMAGE_PICK_CODE= 1;
 
-    ArrayList<AnimalImages> animalImages = new ArrayList<>();
+    //private List<Uri> uploadedImages = new ArrayList<>();
+
+//    private List<String> mPhotos;
+
+    private int upload_count = 0;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -171,13 +178,71 @@ public class Retreiving_data extends AppCompatActivity {
     }
 
     //for uploading contents to firebase
-    private void addContents(){
-        if(mImageUri != null){
-            final StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()
-            + "." + getFileExtension(mImageUri));
+    private void addContents() {
+        if (mImageUri !=null) {
+////            for (upload_count = 0; upload_count < uploadedImages.size(); upload_count++) {
+//                Uri individual = uploadedImages.get(upload_count);
+//
+//                final StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()
+//                        + "." + getFileExtension(mImageUri) + getFileExtension(individual));
+//
+//                fileReference.putFile(individual).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//                    @Override
+//                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+//                        fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                String url = String.valueOf(uri);
+//                                HashMap<String,String> hashMap = new HashMap<>();
+//                                hashMap.put("imgLink",url);
+//
+//                                databaseAnimals.push().setValue(hashMap);
+//
+//                                Toast.makeText(Retreiving_data.this, "Upload Successful", Toast.LENGTH_SHORT).show();
+//                                AnimalsModel animals = new AnimalsModel(mName.getText().toString().trim(),
+//
+//                                        mGenger.getText().toString().trim(),
+//                                        mBreed.getText().toString().trim(),
+//                                        mDidtrict.getText().toString().trim(),
+//                                        uri.toString(),
+//                                        new  ArrayList(Collections.singleton(uploadedImages.toString())),
+//                                        sp1.getSelectedItem().toString(),
+//                                        mBreed.getText().toString().substring(0, 1));
+//                                String uploadId = databaseAnimals.push().getKey();
+//                               databaseAnimals.child(uploadId).setValue(animals);
+//                            }
+//                        });
+//                        Handler handler = new Handler();
+//                        handler.postDelayed(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                mProgressBar.setProgress(0);
+//                            }
+//                        }, 500);
+//                        Toast.makeText(Retreiving_data.this, "Upload Successful", Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                 .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Toast.makeText(Retreiving_data.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                })
+//                        .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+//                            @Override
+//                            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+//                                double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+//                                mProgressBar.setProgress((int) progress);
+//                            }
+//                        });
 
-           mUploadTask =  fileReference.putFile(mImageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+//
+            final StorageReference fileReference = mStorageReference.child(System.currentTimeMillis()
+                    + "." + getFileExtension(mImageUri));
+
+
+                mUploadTask = fileReference.putFile(mImageUri)
+                        .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
 
@@ -192,8 +257,11 @@ public class Retreiving_data extends AppCompatActivity {
                                             mBreed.getText().toString().trim(),
                                             mDidtrict.getText().toString().trim(),
                                             uri.toString(),
+                                            uri.toString(),
+                                            uri.toString(),
+                                            uri.toString(),
                                             sp1.getSelectedItem().toString(),
-                                            mBreed.getText().toString().substring(0,1));
+                                            mBreed.getText().toString().substring(0, 1));
                                     String uploadId = databaseAnimals.push().getKey();
                                     databaseAnimals.child(uploadId).setValue(animals);
                                 }
@@ -222,7 +290,8 @@ public class Retreiving_data extends AppCompatActivity {
                             mProgressBar.setProgress((int) progress);
                         }
                     });
-        }
+
+    }
         else {
             Toast.makeText(this,"No File Selected",Toast.LENGTH_SHORT).show();
         }
@@ -239,24 +308,27 @@ public class Retreiving_data extends AppCompatActivity {
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE && data!= null &&data.getClipData() !=null){
-            int countClipData  = data.getClipData().getItemCount();
+        if(resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE && data!= null &&data.getData() !=null){
+//            int countClipData  = data.getClipData().getItemCount();
 
-            int currentImageSelect = 0;
+//            int currentImageSelect = 0;
 
-            while (currentImageSelect<countClipData){
-                mImageUri = data.getClipData().getItemAt(currentImageSelect).getUri();
-                currentImageSelect = currentImageSelect +1;
-            }
+//            while (currentImageSelect <countClipData ){
+//                mImageUri = data.getClipData().getItemAt(currentImageSelect).getUri();
+//
+//                uploadedImages.add(mImageUri);
+//
+//                currentImageSelect = currentImageSelect + 1;
+//            }
+//
+//            Toast.makeText(this," you have selected " + uploadedImages.size()+ " images " , Toast.LENGTH_SHORT).show();
 
+        mImageUri = data.getData();
 
-
-
-
-
-            Glide.with(this)
-                    .load(mImageUri)
-                    .into(img);
+//
+//            Glide.with(this)
+//                    .load(mImageUri)
+//                    .into(img);
         }
     }
 

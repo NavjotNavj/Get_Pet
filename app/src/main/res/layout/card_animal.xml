@@ -26,17 +26,17 @@
             android:layout_weight="0.10"
             android:gravity="center_horizontal|center_vertical"
             android:orientation="vertical"
-            android:padding="15dp">
+            android:padding="10dp">
 
             <TextView
-                android:layout_width="65dp"
-                android:layout_height="40dp"
+                android:id="@+id/circleText"
+                android:layout_width="53dp"
+                android:layout_height="wrap_content"
                 android:background="@drawable/circle_shape"
                 android:text="G"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="28dp"
-                android:id="@+id/circleText"/>
+                android:textSize="28dp" />
 
         </LinearLayout>
         <LinearLayout
@@ -83,7 +83,7 @@
                 />
         </LinearLayout>
         <ImageView
-            android:layout_width="100pt"
+            android:layout_width="150pt"
             android:layout_height="114dp"
             android:layout_marginRight="10dp"
             app:srcCompat="@drawable/german"
